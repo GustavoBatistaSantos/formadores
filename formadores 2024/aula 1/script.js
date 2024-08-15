@@ -9,20 +9,32 @@ const perguntas = [
 {
     enunciado: "VOCÊ SE SENTE SOBRECARREGADO COM O SEU TRABALHO?",
     alternativas: [
-        "SIM, ME SINTO SOBRECARREGADO (MENTALMENTE, FISICAMENT)E OU EMOCIONALMENTE",
-        "NÃO, ESTOU EM EQUILÍBRIO EM TODAS AS ÁREAS DA MINHA VIDA"
+        {
+        texto: "SIM, ME SINTO SOBRECARREGADO (MENTALMENTE, FISICAMENT)E OU EMOCIONALMENTE",
+        afirmação: "Afirmação 1"
+        },
+        {
+        texto: "NÃO, ESTOU EM EQUILÍBRIO EM TODAS AS ÁREAS DA MINHA VIDA",
+        afirmação: "afirmação 2"
+        }
     ]
 },
 {
     enunciado:"O QUE LEVA A SOBRECARGA, NA SUA OPINIÃO?",
     alternativas: [
-        "O STRESS CONSTANTE E PRESSÃO NAS COBRANÇAS POR RESULTADOS NO DIA A DIA",
-        "A ANSIEDADE EMOCIONAL PELO O INÍCIO DA SEGUNDA-FEIRA"
+        {
+        texto: "O STRESS CONSTANTE E PRESSÃO NAS COBRANÇAS POR RESULTADOS NO DIA A DIA",
+        afirmação: "afimação 1"
+        },
+        {
+        texto:"A ANSIEDADE EMOCIONAL PELO O INÍCIO DA SEGUNDA-FEIRA",
+        afirmação: "afirmação 2"
+        }
     ]
 }
 ];
 
-let atual = 0
+let atual = 0;
 let perguntaAtual;
 
 function mostraPergunta (){
@@ -36,7 +48,11 @@ mostraAlternativas();
 function mostraAlternativas(){
     for (const alternativa of perguntaAtual.alternativas){
         const botaoAlternativas = document.createElement("button")
-        botaoAlternativas.textContent = alternativa;
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", function (){
+            atual ++;
+            mostraPergunta();
+        })
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
