@@ -7,31 +7,44 @@ const textoResultado = document.querySelector(".texto-resultado")
 
 const perguntas = [
 {
-    enunciado: "VOCÊ SE SENTE SOBRECARREGADO COM O SEU TRABALHO?",
-    alternativas: [
+    enunciado: "Como você acredita que podemos combater o racismo na sociedade?",
+    alternativas: [           
         {
-        texto: "SIM, ME SINTO SOBRECARREGADO (MENTALMENTE, FISICAMENT)E OU EMOCIONALMENTE",
-        afirmação: "Afirmação 1"
+            texto: "Participando de campanhas de conscientização e educação sobre igualdade racial.",
+            afirmação: "Você acredita que a conscientização e a educação são ferramentas essenciais para promover a igualdade racial e combater o racismo."
         },
         {
-        texto: "NÃO, ESTOU EM EQUILÍBRIO EM TODAS AS ÁREAS DA MINHA VIDA",
-        afirmação: "afirmação 2"
+            texto:  "Denunciando atos de discriminação e apoiando políticas públicas inclusivas.",
+            afirmação: "Você considera a denúncia de discriminação e o suporte a políticas públicas inclusivas como métodos importantes para enfrentar o racismo."
         }
     ]
 },
 {
-    enunciado:"O QUE LEVA A SOBRECARGA, NA SUA OPINIÃO?",
-    alternativas: [
+    enunciado: "Como você pode ajudar a combater a disseminação de fake news, especialmente as que perpetuam o racismo?",
+    alternativas: [ 
         {
-        texto: "O STRESS CONSTANTE E PRESSÃO NAS COBRANÇAS POR RESULTADOS NO DIA A DIA",
-        afirmação: "afimação 1"
+            texto: "Verificando a veracidade das informações antes de compartilhar qualquer conteúdo, especialmente sobre temas sensíveis como racismo.",
+            afirmação: "Você valoriza a verificação de informações como um meio fundamental para combater a disseminação de fake news e evitar a propagação de conteúdos prejudiciais."
         },
         {
-        texto:"A ANSIEDADE EMOCIONAL PELO O INÍCIO DA SEGUNDA-FEIRA",
-        afirmação: "afirmação 2"
+            texto: "Educando amigos e familiares sobre os perigos das fake news e incentivando-os a não compartilhar conteúdos falsos que perpetuam o racismo.",
+            afirmação: "Você acredita na importância de educar os outros sobre os riscos das fake news e incentivar a responsabilidade ao compartilhar informações, especialmente sobre temas raciais."
         }
     ]
-}
+},
+{
+    enunciado: "Como podemos incentivar o uso de energia solar e outras formas de energia limpa, especialmente em comunidades carentes?",
+    alternativas: [           
+        {
+            texto: "Promovendo a instalação de painéis solares em escolas e centros comunitários de comunidades marginalizadas.",
+            afirmação: "Você acredita que a instalação de painéis solares em locais estratégicos como escolas e centros comunitários pode ser uma forma eficaz de promover o uso de energia limpa e beneficiar comunidades carentes."
+        },
+        {
+            texto: "Defendendo políticas públicas que subsidiem a energia solar para famílias de baixa renda.",
+            afirmação: "Você considera essencial a defesa de políticas públicas que ofereçam subsídios para energia solar, facilitando o acesso a essa tecnologia para famílias de baixa renda."
+        }
+    ]
+} 
 ];
 
 let atual = 0;
@@ -40,9 +53,14 @@ let historiaFinal = "";
 
 function mostraPergunta (){
 
+    if (atual>=perguntas.length){
+        mostraResultado();
+        return
+    }
 perguntaAtual = perguntas[atual];
 caixaPerguntas.textContent = perguntas [atual].enunciado;
 caixaAlternativas.textContent = "";
+textoResultado.textContent = " ";
 mostraAlternativas();
 }
 
@@ -59,8 +77,12 @@ function mostraAlternativas(){
 
 function respostaSelecionada(opcaoSelecionada){
     const afirmação = opcaoSelecionada.afirmação;
-    historiaFinal = afirmação;
+    historiaFinal += afirmação + "";
     atual ++;
     mostraPergunta();
+}
+function mostraResultado(){
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent = "Seu Resiltado";
 }
 mostraPergunta();
